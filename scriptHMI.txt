@@ -1,0 +1,114 @@
+Dim pb1label As Integer
+Dim pb2label As Integer
+Dim pb3label As Integer
+Dim pb4label As Integer
+Dim a As String
+Dim i As Integer
+Dim hold As Integer
+
+
+Private Sub Connect_Click()
+MSComm1.CommPort = Val(Combo1.Text)
+MSComm1.Settings = "9600,n,8,1"
+MSComm1.PortOpen = True
+MsgBox "Koneksi Berhasil !", vbInformation, "Sukses"
+hold = 1
+End Sub
+
+Private Sub Form_Load()
+pb1label = 1
+pb2label = 1
+pb3label = 1
+pb4label = 1
+t1t1.BackColor = vbGreen
+t2t2.BackColor = vbGreen
+t3t3.BackColor = vbRed
+t4t4.BackColor = vbGreen
+For i = 0 To 20
+Combo1.AddItem i
+Next
+End Sub
+
+Private Sub t1_Click()
+If pb1label = 1 Then
+t1t1.BackColor = vbRed
+pb1label = 0
+Else
+t1t1.BackColor = vbGreen
+pb1label = 1
+End If
+If pb1label = 1 And pb2label = 1 Then
+MSComm1.Output = "Tugas Final Micro"
+End If
+If pb1label = 0 And pb2label = 1 Then
+MSComm1.Output = "Elka 2A"
+End If
+If pb1label = 1 And pb2label = 0 Then
+MSComm1.Output = "323 17 010"
+End If
+If pb1label = 0 And pb2label = 0 Then
+MSComm1.Output = "10"
+End If
+End Sub
+Private Sub t2_Click()
+If pb2label = 1 Then
+t2t2.BackColor = vbRed
+pb2label = 0
+Else
+t2t2.BackColor = vbGreen
+pb2label = 1
+End If
+If pb1label = 1 And pb2label = 1 Then
+MSComm1.Output = "Tugas Final Micro"
+End If
+If pb1label = 0 And pb2label = 1 Then
+MSComm1.Output = "Elka 2A"
+End If
+If pb1label = 1 And pb2label = 0 Then
+MSComm1.Output = "323 17 010"
+End If
+If pb1label = 0 And pb2label = 0 Then
+MSComm1.Output = "10"
+End If
+End Sub
+Private Sub t3_Click()
+MSComm1.Output = "kedip"
+t4t4.BackColor = vbGreen
+t3t3.BackColor = vbRed
+End Sub
+Private Sub t4_Click()
+MSComm1.Output = "stop"
+t4t4.BackColor = vbRed
+t3t3.BackColor = vbGreen
+End Sub
+
+
+Private Sub Timer1_Timer()
+If hold = 1 Then
+a = MSComm1.Input
+If a = "1" Then
+i1.BackColor = vbRed
+End If
+If a = "2" Then
+i2.BackColor = vbRed
+End If
+If a = "3" Then
+i3.BackColor = vbRed
+End If
+If a = "4" Then
+i4.BackColor = vbRed
+End If
+If a = "A" Then
+i1.BackColor = vbBlack
+End If
+If a = "B" Then
+i2.BackColor = vbBlack
+End If
+If a = "C" Then
+i3.BackColor = vbBlack
+End If
+If a = "D" Then
+i4.BackColor = vbBlack
+End If
+End If
+End Sub
